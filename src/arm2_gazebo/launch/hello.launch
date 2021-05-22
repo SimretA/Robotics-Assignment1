@@ -1,0 +1,9 @@
+<launch>
+    <!-- We resume the logic in empty_world.launch, changing only the name of the world to be launched -->
+    <include file="$(find gazebo_ros)/launch/empty_world.launch">
+        <arg name="world_name" value="$(find arm2_gazebo)/worlds/hello.world"/>
+        <!-- more default parameters can be changed here -->
+    </include>
+    <node name="arm_sdf" pkg="gazebo_ros" type="spawn_model" args="-file $(find arm2_description)/model/model.sdf -sdf -model arm">
+    </node>
+</launch>
