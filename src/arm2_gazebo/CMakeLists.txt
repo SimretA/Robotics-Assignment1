@@ -17,6 +17,24 @@ endif()
 find_package(catkin REQUIRED COMPONENTS
   roscpp
   gazebo_ros
+  std_msgs
+  message_generation
+)
+
+#add_message_files{
+#  FILES
+#  joint_angles.msg
+#}
+
+
+
+add_service_files(
+  FILES
+  set_angles.srv
+)
+
+generate_messages(
+  DEPENDENCIES
 )
 
 # Depend on system install of Gazebo
@@ -29,7 +47,11 @@ catkin_package(
   DEPENDS
     roscpp
     gazebo_ros
+    message_runtime
 )
 
-add_library(${PROJECT_NAME} src/world_plugin.cpp)
-target_link_libraries(${PROJECT_NAME} ${catkin_LIBRARIES} ${GAZEBO_LIBRARIES})
+add_library(world_plugin src/world_plugin.cpp)
+target_link_libraries(world_plugin ${catkin_LIBRARIES} ${GAZEBO_LIBRARIES})
+
+add_library(set_angles_server_plugin src/set_angles_server_plugin.cpp)
+target_link_libraries(set_angles_server_plugin ${catkin_LIBRARIES} ${GAZEBO_LIBRARIES})

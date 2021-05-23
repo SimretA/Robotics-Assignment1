@@ -131,6 +131,7 @@
         </joint>
 
         <!-- plugin goes here -->
-        <plugin name="arm2_gazebo" filename="libarm2_gazebo.so" />
+        <plugin name="world_plugin" filename="libworld_plugin.so" />
+        <plugin name="set_angles_server_plugin" filename="libset_angles_server_plugin.so" />
     </model>
 </sdf>

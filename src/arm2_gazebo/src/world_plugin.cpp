@@ -1,53 +1,71 @@
+#include <iostream>
+#include <string>
 #include <functional>
-#include <gazebo/common/Plugin.hh>
+#include <memory>
+
+#include <gazebo/gazebo.hh>
 #include <gazebo/physics/physics.hh>
 #include <gazebo/common/common.hh>
 
 #include <ros/ros.h>
 #include <std_msgs/String.h>
-#include <sstream>
+#include <sensor_msgs/JointState.h>
 
-namespace gazebo
-{
-class WorldPluginTutorial : public WorldPlugin
-{
-public:
-  // ros::NodeHandle n;
-  WorldPluginTutorial() : WorldPlugin()
-  {
-    // ros::init("","","talker");
-    ROS_INFO("Plugin intialized!");
-  }
+namespace gazebo {
+    class WorldPluginTutorial : public ModelPlugin {
+    private:
+        physics::ModelPtr model;
+        physics::Joint_V jointList;
+        sdf::ElementPtr sdf;
+        event::ConnectionPtr updateConnection;
 
-  void Load(physics::WorldPtr _world, sdf::ElementPtr _sdf)
-  {
-    // Make sure the ROS node for Gazebo has already been initialized
-    if (!ros::isInitialized())
-    {
-      ROS_FATAL_STREAM("A ROS node for Gazebo has not been initialized, unable to load plugin. "
-        << "Load the Gazebo system plugin 'libgazebo_ros_api_plugin.so' in the gazebo_ros package)");
-      return;
-    }
+        int jointsCount = 0;
 
-    // ros::Publisher chatter_pub = this->n.advertise<std_msgs::String>("chatter", 1000);
-    ROS_INFO("Plugin loaded...");
-    // printf("Loaded");
-    // this->updateConnection = event::Events::ConnectWorldUpdateBegin(std::bind(&WorldPluginTutorial::OnUpdate, this));
-    // this->world = _world;
-  }
+        ros::NodeHandle n;
+        ros::Publisher chatter_pub;
+        sensor_msgs::JointState jointMsg;
 
-  void OnUpdate(){
-    ROS_INFO("Updated");
-    printf("Updated");
-  }
+        void InitializeROSMembers() {
+            if (!ros::isInitialized()) {
+                int argc = 0;
+                char **argv = nullptr;
+                ros::init(argc, argv, "talker", ros::init_options::NoSigintHandler);
+            }
+            this->chatter_pub = n.advertise<sensor_msgs::JointState>("/chatter", 10, false);
 
+            this->jointMsg = sensor_msgs::JointState();
 
-// private:
-//   //pointer to world
-//   physics::WorldPtr world;
-//   // Pointer to the update event connection
-//   event::ConnectionPtr updateConnection;
+            this->jointsCount = this->jointList.size();
 
-};
-GZ_REGISTER_WORLD_PLUGIN(WorldPluginTutorial)
+            this->jointMsg.position.resize(this->jointsCount);
+
+            for (auto const &j : jointList) {
+                this->jointMsg.name.push_back(j->GetName());
+            }
+        }
+
+    public:
+        void Load(physics::ModelPtr _parent, sdf::ElementPtr _sdf) {
+            this->model = _parent;
+            this->sdf = _sdf;
+            jointList = model->GetJoints();
+
+            InitializeROSMembers();
+
+            this->updateConnection = event::Events::ConnectWorldUpdateBegin(std::bind(&WorldPluginTutorial::OnUpdate, this));
+
+        }
+        void OnUpdate() {
+            for (int i = 0; i < jointsCount; i++) {
+                this->jointMsg.position[i] = jointList[i]->Position(i ? 0 : 2);
+                // this->jointMsg.position[i] = jointList[i]->GetAngle(i ? 0 : 2)->Degree();
+            }
+            jointMsg.header.stamp = ros::Time::now();
+            this->chatter_pub.publish(this->jointMsg);
+
+        }
+    };
+
+    // Register this plugin with the simulator
+    GZ_REGISTER_MODEL_PLUGIN(WorldPluginTutorial)
 }
