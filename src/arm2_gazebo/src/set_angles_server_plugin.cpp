@@ -18,19 +18,17 @@ namespace gazebo
                 printf("Service intialized---------------\n");
 
                 if (_model->GetJointCount() == 0) {
-                    std::cerr << "Invalid joint count, Arm_gazebo plugin not loaded\n";
+                    std::cerr << "Invalid joint count\n";
                     return;
                 }
 
                 // Store the model pointer for convenience.
                 this->model = _model;
                 this->jointController = this->model->GetJointController();
-                // Get the first joint. We are making an assumption about the model
-                // having one joint that is the rotational joint.
                 this->jointList = _model->GetJoints();
 
                 // Setup a P-controller, with a gain of 0.1.
-                this->pid = common::PID(0.1, 0.01, 0.03);
+                this->pid = common::PID(0.1, 0.01, 0.02);
 
                 // Apply the P-controller to the joint.
                 for (auto const &joint : jointList) {
@@ -50,7 +48,7 @@ namespace gazebo
 
                 printf("Service intialized-2--------------\n");
 
-                ros::ServiceServer service = n.advertiseService("set_angles",&SetAnglesServerPlugin::set_angles_here,this);
+                ros::ServiceServer service = n.advertiseService("/set_angles",&SetAnglesServerPlugin::set_angles_here,this);
 
                 printf("Service intialized-3--------------\n");
                 // // Create the node
