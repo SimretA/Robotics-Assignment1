@@ -1,0 +1,18 @@
+{
+  "configurations": [
+    {
+      "browse": {
+        "databaseFilename": "",
+        "limitSymbolsToIncludedHeaders": true
+      },
+      "includePath": [
+        "/home/sims/Documents/School/Y5S1/robotics/lab_assignment/Robotics-Assignment1/devel/include/**",
+        "/opt/ros/noetic/include/**",
+        "/home/sims/Documents/School/Y5S1/robotics/lab_assignment/Robotics-Assignment1/src/transformations/include/**",
+        "/usr/include/**"
+      ],
+      "name": "ROS"
+    }
+  ],
+  "version": 4
+}
