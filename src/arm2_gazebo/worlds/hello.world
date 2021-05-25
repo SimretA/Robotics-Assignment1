@@ -9,6 +9,6 @@
         </include>
         <!-- plugin goes here -->
         <plugin name="world_plugin" filename="libworld_plugin.so" />
-        <plugin name="set_angles_server_plugin" filename="libset_angles_server_plugin.so" />
+        <plugin name="set_angles_subscriber_plugin" filename="libset_angles_subscriber_plugin.so" />
     </world>
 </sdf>
