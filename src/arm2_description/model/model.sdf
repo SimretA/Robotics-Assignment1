@@ -1,6 +1,7 @@
 <?xml version='1.0'?>
 <sdf version='1.4'>
     <model name="arm_robot">
+        <self_collide>1</self_collide>
         <link name="base">
             <pose>0 0 .05 0 0 0</pose>
             <collision name='collision'>
@@ -129,9 +130,8 @@
                 <xyz>1 0 0</xyz>
             </axis>
         </joint>
-
         <!-- plugin goes here -->
         <plugin name="world_plugin" filename="libworld_plugin.so" />
-        <plugin name="set_angles_server_plugin" filename="libset_angles_server_plugin.so" />
+        <plugin name="set_angles_subscriber_plugin" filename="libset_angles_subscriber_plugin.so" />
     </model>
 </sdf>

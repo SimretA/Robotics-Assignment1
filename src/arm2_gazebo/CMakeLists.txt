@@ -21,20 +21,14 @@ find_package(catkin REQUIRED COMPONENTS
   message_generation
 )
 
-#add_message_files{
-#  FILES
-#  joint_angles.msg
-#}
-
-
-
-add_service_files(
+add_message_files(
   FILES
-  set_angles.srv
+  setangles.msg
 )
 
 generate_messages(
   DEPENDENCIES
+  std_msgs
 )
 
 # Depend on system install of Gazebo
@@ -53,5 +47,5 @@ catkin_package(
 add_library(world_plugin src/world_plugin.cpp)
 target_link_libraries(world_plugin ${catkin_LIBRARIES} ${GAZEBO_LIBRARIES})
 
-add_library(set_angles_server_plugin src/set_angles_server_plugin.cpp)
-target_link_libraries(set_angles_server_plugin ${catkin_LIBRARIES} ${GAZEBO_LIBRARIES})
+add_library(set_angles_subscriber_plugin src/set_angles_subscriber_plugin.cpp)
+target_link_libraries(set_angles_subscriber_plugin ${catkin_LIBRARIES} ${GAZEBO_LIBRARIES})

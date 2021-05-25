@@ -25,13 +25,13 @@ namespace gazebo {
         ros::Publisher chatter_pub;
         sensor_msgs::JointState jointMsg;
 
-        void InitializeROSMembers() {
+        void CreateRosTopic() {
             if (!ros::isInitialized()) {
                 int argc = 0;
                 char **argv = nullptr;
-                ros::init(argc, argv, "talker", ros::init_options::NoSigintHandler);
+                ros::init(argc, argv, "world_plugin_node", ros::init_options::NoSigintHandler);
             }
-            this->chatter_pub = n.advertise<sensor_msgs::JointState>("/chatter", 10, false);
+            this->chatter_pub = n.advertise<sensor_msgs::JointState>("/angle_publisher_topic", 10, false);
 
             this->jointMsg = sensor_msgs::JointState();
 
@@ -50,7 +50,8 @@ namespace gazebo {
             this->sdf = _sdf;
             jointList = model->GetJoints();
 
-            InitializeROSMembers();
+            //this created configuration related to ros and topic
+            CreateRosTopic();
 
             this->updateConnection = event::Events::ConnectWorldUpdateBegin(std::bind(&WorldPluginTutorial::OnUpdate, this));
 
