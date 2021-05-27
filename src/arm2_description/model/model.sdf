@@ -4,7 +4,7 @@
         <self_collide>1</self_collide>
         <link name="base">
             <pose>0 0 .05 0 0 0</pose>
-            <gravity>0</gravity>
+            <!-- <gravity>0</gravity> -->
             <inertial>
                 <mass>30</mass>
             </inertial>
@@ -23,18 +23,18 @@
                         <length>.1</length>
                     </cylinder>
                 </geometry>
-                <material>
+                <!-- <material>
                     <script>
                         <uri>model://materials/scripts</uri>
                         <uri>model://materials/textures</uri>
                         <name>RepeatedTexture</name>
                     </script>
-                </material>
+                </material> -->
             </visual>
         </link>
         <link name="arm1">
             <pose>0 0 0.125 0 0 0</pose>
-            <gravity>0</gravity>
+            <!-- <gravity>0</gravity> -->
             <collision name='collision'>
                 <geometry>
                     <cylinder>
@@ -50,18 +50,18 @@
                         <length>.05</length>
                     </cylinder>
                 </geometry>
-                <material>
+                <!-- <material>
                     <script>
                         <uri>model://materials/scripts</uri>
                         <uri>model://materials/textures</uri>
                         <name>RepeatedTexture</name>
                     </script>
-                </material>
+                </material> -->
             </visual>
         </link>
         <link name="arm2">
             <pose>0 0 1.15 0 0 0</pose>
-            <gravity>0</gravity>
+            <!-- <gravity>0</gravity> -->
             <collision name='collision'>
                 <geometry>
                     <cylinder>
@@ -77,18 +77,18 @@
                         <length>2</length>
                     </cylinder>
                 </geometry>
-                <material>
+                <!-- <material>
                     <script>
                         <uri>model://materials/scripts</uri>
                         <uri>model://materials/textures</uri>
                         <name>RepeatedTexture</name>
                     </script>
-                </material>
+                </material> -->
             </visual>
         </link>
         <link name="arm3">
             <pose>0 0 2.65 0 0 0</pose>
-            <gravity>0</gravity>
+            <!-- <gravity>0</gravity> -->
             <collision name='collision'>
                 <geometry>
                     <cylinder>
@@ -104,18 +104,18 @@
                         <length>1</length>
                     </cylinder>
                 </geometry>
-                <material>
+                <!-- <material>
                     <script>
                         <uri>model://materials/scripts</uri>
                         <uri>model://materials/textures</uri>
                         <name>RepeatedTexture</name>
                     </script>
-                </material>
+                </material> -->
             </visual>
         </link>
         <link name="arm4">
             <pose>0 0 3.4 0 0 0</pose>
-            <gravity>0</gravity>
+            <!-- <gravity>0</gravity> -->
             <collision name='collision'>
                 <geometry>
                     <cylinder>
@@ -131,13 +131,13 @@
                         <length>0.5</length>
                     </cylinder>
                 </geometry>
-                <material>
+                <!-- <material>
                     <script>
                         <uri>model://materials/scripts</uri>
                         <uri>model://materials/textures</uri>
                         <name>RepeatedTexture</name>
                     </script>
-                </material>
+                </material> -->
             </visual>
         </link>
         <!-- joints start here -->

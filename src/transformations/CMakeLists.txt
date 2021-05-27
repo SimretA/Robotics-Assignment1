@@ -217,11 +217,3 @@ add_dependencies(talker transformations_generate_messages_cpp)
 add_executable(listener src/listener.cpp)
 target_link_libraries(listener ${catkin_LIBRARIES})
 add_dependencies(listener transformations_generate_messages_cpp)
-
-# add_executable(transform_point_server src/transform_point_server.cpp)
-# target_link_libraries(transform_point_server ${catkin_LIBRARIES})
-# add_dependencies(transform_point_server transformations_gencpp)
-
-# add_executable(transform_point_client src/transform_point_client.cpp)
-# target_link_libraries(transform_point_client ${catkin_LIBRARIES})
-# add_dependencies(transform_point_client transformations_gencpp)
