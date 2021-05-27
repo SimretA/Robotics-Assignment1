@@ -34,7 +34,7 @@
         </link>
         <link name="arm1">
             <pose>0 0 0.125 0 0 0</pose>
-            <!-- <gravity>0</gravity> -->
+            <gravity>0</gravity>
             <collision name='collision'>
                 <geometry>
                     <cylinder>
@@ -61,7 +61,7 @@
         </link>
         <link name="arm2">
             <pose>0 0 1.15 0 0 0</pose>
-            <!-- <gravity>0</gravity> -->
+            <gravity>0</gravity>
             <collision name='collision'>
                 <geometry>
                     <cylinder>
@@ -88,7 +88,7 @@
         </link>
         <link name="arm3">
             <pose>0 0 2.65 0 0 0</pose>
-            <!-- <gravity>0</gravity> -->
+            <gravity>0</gravity>
             <collision name='collision'>
                 <geometry>
                     <cylinder>
@@ -115,7 +115,7 @@
         </link>
         <link name="arm4">
             <pose>0 0 3.4 0 0 0</pose>
-            <!-- <gravity>0</gravity> -->
+            <gravity>0</gravity>
             <collision name='collision'>
                 <geometry>
                     <cylinder>
