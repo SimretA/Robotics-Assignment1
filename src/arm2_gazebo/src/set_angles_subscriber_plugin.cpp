@@ -74,8 +74,6 @@ namespace gazebo
             physics::JointControllerPtr jointController;
             physics::Joint_V jointList;
             common::PID pid;
-            // transport::NodePtr node;
-            // transport::SubscriberPtr sub; //change
     };
 
     // Register this plugin with the simulator
