@@ -140,6 +140,153 @@
                 </material> -->
             </visual>
         </link>
+        <link name="palm">
+            <pose>0.0 0.0 3.7 0 0 0</pose>
+            <inertial>
+                <inertia>
+                    <ixx>0.01</ixx>
+                    <ixy>0</ixy>
+                    <ixz>0</ixz>
+                    <iyy>0.01</iyy>
+                    <iyz>0</iyz>
+                    <izz>0.01</izz>
+                </inertia>
+                <mass>0.5</mass>
+            </inertial>
+            <collision name="collision">
+                <geometry>
+                    <box>
+                        <size>0.1 0.2 0.1</size>
+                    </box>
+                </geometry>
+            </collision>
+            <visual name="visual">
+                <geometry>
+                    <box>
+                        <size>0.1 0.2 0.1</size>
+                    </box>
+                </geometry>
+            </visual>
+        </link>
+
+        <link name="left_finger">
+            <pose>0.0 0.2 3.8 -0.78539 0 0</pose>
+            <inertial>
+                <inertia>
+                    <ixx>0.01</ixx>
+                    <ixy>0</ixy>
+                    <ixz>0</ixz>
+                    <iyy>0.01</iyy>
+                    <iyz>0</iyz>
+                    <izz>0.01</izz>
+                </inertia>
+                <mass>0.1</mass>
+            </inertial>
+            <collision name="collision">
+                <geometry>
+                    <box>
+                        <size>0.1 0.1 0.3</size>
+                    </box>
+                </geometry>
+            </collision>
+            <visual name="visual">
+                <geometry>
+                    <box>
+                        <size>0.1 0.1 0.3</size>
+                    </box>
+                </geometry>
+            </visual>
+        </link>
+
+        <link name="right_finger">
+            <pose>0.0 -0.2 3.8 0.78539 0 0</pose>
+            <inertial>
+                <inertia>
+                    <ixx>0.01</ixx>
+                    <ixy>0</ixy>
+                    <ixz>0</ixz>
+                    <iyy>0.01</iyy>
+                    <iyz>0</iyz>
+                    <izz>0.01</izz>
+                </inertia>
+                <mass>0.1</mass>
+            </inertial>
+            <collision name="collision">
+                <geometry>
+                    <box>
+                        <size>0.1 0.1 0.3</size>
+                    </box>
+                </geometry>
+            </collision>
+            <visual name="visual">
+                <geometry>
+                    <box>
+                        <size>0.1 0.1 0.3</size>
+                    </box>
+                </geometry>
+            </visual>
+        </link>
+
+        <link name="left_finger_tip">
+            <pose>0.0 0.3 4.056 0 0 0</pose>
+            <inertial>
+                <inertia>
+                    <ixx>0.01</ixx>
+                    <ixy>0</ixy>
+                    <ixz>0</ixz>
+                    <iyy>0.01</iyy>
+                    <iyz>0</iyz>
+                    <izz>0.01</izz>
+                </inertia>
+                <mass>0.1</mass>
+            </inertial>
+            <collision name="collision">
+                <geometry>
+                    <box>
+                        <size>0.1 0.1 0.3</size>
+                    </box>
+                </geometry>
+            </collision>
+            <visual name="visual">
+                <geometry>
+                    <box>
+                        <size>0.1 0.1 0.3</size>
+                    </box>
+                </geometry>
+            </visual>
+        </link>
+        <link name="right_finger_tip">
+            <pose>0.0 -0.3 4.056 0 0 0</pose>
+            <inertial>
+                <inertia>
+                    <ixx>0.01</ixx>
+                    <ixy>0</ixy>
+                    <ixz>0</ixz>
+                    <iyy>0.01</iyy>
+                    <iyz>0</iyz>
+                    <izz>0.01</izz>
+                </inertia>
+                <mass>0.1</mass>
+            </inertial>
+            <collision name="collision">
+                <geometry>
+                    <box>
+                        <size>0.1 0.1 0.3</size>
+                    </box>
+                </geometry>
+            </collision>
+            <visual name="visual">
+                <geometry>
+                    <box>
+                        <size>0.1 0.1 0.3</size>
+                    </box>
+                </geometry>
+            </visual>
+        </link>
+
+
+
+
         <!-- joints start here -->
         <joint name="base_with_arm1" type="revolute">
             <parent>base</parent>
@@ -173,6 +320,66 @@
                 <xyz>1 0 0</xyz>
             </axis>
         </joint>
+
+        <joint name="arm4_with_palm" type="revolute">
+            <parent>arm4</parent>
+            <child>palm</child>
+            <pose>0 0 -0.05 0 0 0</pose>
+            <axis>
+                <xyz>1 0 1</xyz>
+            </axis>
+        </joint>
+
+        <joint name="palm_left_finger" type="revolute">
+            <pose>0 0 -0.15 0 0 0</pose>
+            <child>left_finger</child>
+            <parent>palm</parent>
+            <axis>
+                <limit>
+                    <lower>-0.4</lower>
+                    <upper>0.4</upper>
+                </limit>
+                <xyz>1 0 0</xyz>
+            </axis>
+        </joint>
+
+        <joint name="palm_right_finger" type="revolute">
+            <pose>0 0 -0.15 0 0 0</pose>
+            <child>right_finger</child>
+            <parent>palm</parent>
+            <axis>
+                <limit>
+                    <lower>-0.4</lower>
+                    <upper>0.4</upper>
+                </limit>
+                <xyz>1 0 0</xyz>
+            </axis>
+        </joint>
+        <joint name="left_finger_left_finger_tip" type="revolute">
+            <pose>0 -0.05 -0.15 0 0 0</pose>
+            <child>left_finger_tip</child>
+            <parent>left_finger</parent>
+            <axis>
+                <limit>
+                    <lower>-0.4</lower>
+                    <upper>0.4</upper>
+                </limit>
+                <xyz>1 0 0</xyz>
+            </axis>
+        </joint>
+        <joint name="right_finger_right_finger_tip" type="revolute">
+            <pose>0 -0.05 -0.15 0 0 0</pose>
+            <child>right_finger_tip</child>
+            <parent>right_finger</parent>
+            <axis>
+                <limit>
+                    <lower>-0.4</lower>
+                    <upper>0.4</upper>
+                </limit>
+                <xyz>1 0 0</xyz>
+            </axis>
+        </joint>
+
         <!-- plugin goes here -->
         <plugin name="world_plugin" filename="libworld_plugin.so" />
         <plugin name="set_angles_subscriber_plugin" filename="libset_angles_subscriber_plugin.so" />
