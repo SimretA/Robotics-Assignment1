@@ -141,17 +141,11 @@
             </visual>
         </link>
         <link name="palm">
+        <gravity>0</gravity>
             <pose>0.0 0.0 3.7 0 0 0</pose>
             <inertial>
-                <inertia>
-                    <ixx>0.01</ixx>
-                    <ixy>0</ixy>
-                    <ixz>0</ixz>
-                    <iyy>0.01</iyy>
-                    <iyz>0</iyz>
-                    <izz>0.01</izz>
-                </inertia>
-                <mass>0.5</mass>
+                
+                <mass>0.1</mass>
             </inertial>
             <collision name="collision">
                 <geometry>
@@ -171,15 +165,9 @@
 
         <link name="left_finger">
             <pose>0.0 0.2 3.8 -0.78539 0 0</pose>
+            <gravity>0</gravity>
             <inertial>
-                <inertia>
-                    <ixx>0.01</ixx>
-                    <ixy>0</ixy>
-                    <ixz>0</ixz>
-                    <iyy>0.01</iyy>
-                    <iyz>0</iyz>
-                    <izz>0.01</izz>
-                </inertia>
+               
                 <mass>0.1</mass>
             </inertial>
             <collision name="collision">
@@ -200,15 +188,9 @@
 
         <link name="right_finger">
             <pose>0.0 -0.2 3.8 0.78539 0 0</pose>
+            <gravity>0</gravity>
             <inertial>
-                <inertia>
-                    <ixx>0.01</ixx>
-                    <ixy>0</ixy>
-                    <ixz>0</ixz>
-                    <iyy>0.01</iyy>
-                    <iyz>0</iyz>
-                    <izz>0.01</izz>
-                </inertia>
+                
                 <mass>0.1</mass>
             </inertial>
             <collision name="collision">
@@ -229,15 +211,9 @@
 
         <link name="left_finger_tip">
             <pose>0.0 0.3 4.056 0 0 0</pose>
+            <gravity>0</gravity>
             <inertial>
-                <inertia>
-                    <ixx>0.01</ixx>
-                    <ixy>0</ixy>
-                    <ixz>0</ixz>
-                    <iyy>0.01</iyy>
-                    <iyz>0</iyz>
-                    <izz>0.01</izz>
-                </inertia>
+              
                 <mass>0.1</mass>
             </inertial>
             <collision name="collision">
@@ -257,15 +233,9 @@
         </link>
         <link name="right_finger_tip">
             <pose>0.0 -0.3 4.056 0 0 0</pose>
+            <gravity>0</gravity>
             <inertial>
-                <inertia>
-                    <ixx>0.01</ixx>
-                    <ixy>0</ixy>
-                    <ixz>0</ixz>
-                    <iyy>0.01</iyy>
-                    <iyz>0</iyz>
-                    <izz>0.01</izz>
-                </inertia>
+               
                 <mass>0.1</mass>
             </inertial>
             <collision name="collision">
@@ -335,10 +305,6 @@
             <child>left_finger</child>
             <parent>palm</parent>
             <axis>
-                <limit>
-                    <lower>-0.4</lower>
-                    <upper>0.4</upper>
-                </limit>
                 <xyz>1 0 0</xyz>
             </axis>
         </joint>
@@ -348,10 +314,6 @@
             <child>right_finger</child>
             <parent>palm</parent>
             <axis>
-                <limit>
-                    <lower>-0.4</lower>
-                    <upper>0.4</upper>
-                </limit>
                 <xyz>1 0 0</xyz>
             </axis>
         </joint>
@@ -360,22 +322,14 @@
             <child>left_finger_tip</child>
             <parent>left_finger</parent>
             <axis>
-                <limit>
-                    <lower>-0.4</lower>
-                    <upper>0.4</upper>
-                </limit>
                 <xyz>1 0 0</xyz>
             </axis>
         </joint>
         <joint name="right_finger_right_finger_tip" type="revolute">
-            <pose>0 -0.05 -0.15 0 0 0</pose>
+            <pose>0 0.05 -0.15 0 0 0</pose>
             <child>right_finger_tip</child>
             <parent>right_finger</parent>
             <axis>
-                <limit>
-                    <lower>-0.4</lower>
-                    <upper>0.4</upper>
-                </limit>
                 <xyz>1 0 0</xyz>
             </axis>
         </joint>
