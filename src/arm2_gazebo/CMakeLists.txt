@@ -16,6 +16,7 @@ endif()
 # Load catkin and all dependencies required for this package
 find_package(catkin REQUIRED COMPONENTS
   roscpp
+  rospy
   gazebo_ros
   std_msgs
   message_generation
@@ -24,6 +25,12 @@ find_package(catkin REQUIRED COMPONENTS
 add_message_files(
   FILES
   setangles.msg
+)
+
+add_service_files(
+  FILES
+  FK.srv
+  IK.srv
 )
 
 generate_messages(
@@ -49,3 +56,7 @@ target_link_libraries(world_plugin ${catkin_LIBRARIES} ${GAZEBO_LIBRARIES})
 
 add_library(set_angles_subscriber_plugin src/set_angles_subscriber_plugin.cpp)
 target_link_libraries(set_angles_subscriber_plugin ${catkin_LIBRARIES} ${GAZEBO_LIBRARIES})
+
+catkin_install_python(PROGRAMS scripts/fk.py scripts/ik.py
+  DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
+)

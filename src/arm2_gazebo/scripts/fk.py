@@ -1,4 +1,8 @@
+from __future__ import print_function
 import numpy as np
+from arm2_gazebo.srv import *
+import rospy
+
 def Rx(rad):
     return np.array([
         [1,0,0,0],
@@ -31,3 +35,26 @@ def Tz(d):
         [0,0,1,d],
         [0,0,0,1],
     ])
+
+def handle_inputs(req): #req.joint_angles. req.joint_length
+    M1 = Tz(req.joint_length[0])
+    M2 = Rz(np.radians(req.joint_angles[0])).dot(Tz(req.joint_length[1]))
+    M3 = Rx(np.radians(req.joint_angles[1])).dot(Tz(req.joint_length[2]))
+    M4 = Rx(np.radians(req.joint_angles[2])).dot(Tz(req.joint_length[3]))
+    M5 = Rx(np.radians(req.joint_angles[3])).dot(Tz(req.joint_length[4]))
+
+    M = (((M1.dot(M2)).dot(M3)).dot(M4)).dot(M5)
+    print(M)
+    return FKResponse([M[0:3],M[1:3],M[2:3]])
+
+
+def fk_server():
+    print("FK Server is running:...")
+    rospy.init_node('fk_server')
+    s = rospy.Service('fk', FK, handle_inputs)
+    print("Ready to fk.")
+    rospy.spin()
+
+
+if __main__ == "__main__":
+    fk_server()
