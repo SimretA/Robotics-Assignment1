@@ -25,6 +25,12 @@ find_package(catkin REQUIRED COMPONENTS
 add_message_files(
   FILES
   setangles.msg
+  grabalgles.msg
+)
+
+add_service_files(
+  FILES
+  Grab.srv
 )
 
 add_service_files(
@@ -57,6 +63,10 @@ target_link_libraries(world_plugin ${catkin_LIBRARIES} ${GAZEBO_LIBRARIES})
 add_library(set_angles_subscriber_plugin src/set_angles_subscriber_plugin.cpp)
 target_link_libraries(set_angles_subscriber_plugin ${catkin_LIBRARIES} ${GAZEBO_LIBRARIES})
 
+<<<<<<< HEAD
 catkin_install_python(PROGRAMS scripts/fk.py scripts/ik.py
+=======
+catkin_install_python(PROGRAMS scripts/grab_release.py
+>>>>>>> 1b1bdc3b940450b9c73f56f8847c70010ec45337
   DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 )

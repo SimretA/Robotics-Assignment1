@@ -2,6 +2,7 @@
 #include <gazebo/gazebo.hh>
 #include <gazebo/physics/physics.hh>
 #include "arm2_gazebo/setangles.h"
+#include "arm2_gazebo/grabalgles.h"
 #include <iostream>
 using namespace std;
 namespace gazebo
@@ -28,7 +29,7 @@ namespace gazebo
                 this->jointList = _model->GetJoints();
 
                 // Setup a PID, with a proportion = 0.1, i=0.1, d=0.2.
-                this->pid = common::PID(30.1, 10.01, 10.03);
+                this->pid = common::PID(100,50,50);
 
                 // Apply the P-controller to the joint.
                 for (auto const &joint : jointList) {
@@ -63,11 +64,34 @@ namespace gazebo
                     // SetJointAngle(joint->GetScopedName(), rad);
                     jointController->SetPositionTarget(joint->GetScopedName(), rad);
                 }
-                // res.result = "angles have been set!";        
+                // res.result = "angles have been set!";   
+
+                //grab or release
+                this->catch_object(msg);     
+            }
+            void catch_object(const arm2_gazebo::setangles::ConstPtr& msg){
+                //get joints
+                std::string left_finger_left_finger_tip = this->model->GetJoint("left_finger_left_finger_tip")->GetScopedName();
+                std::string right_finger_right_finger_tip = this->model->GetJoint("right_finger_right_finger_tip")->GetScopedName();
+
+                this->jointController->SetPositionPID(left_finger_left_finger_tip, common::PID(30.1, 10.01, 10.03));
+                this->jointController->SetPositionPID(right_finger_right_finger_tip, common::PID(30.1, 10.01, 10.03));
+
+                //angle value to be changed
+                double angle = (msg->finger_finger_tip)*M_PI/180;
+                double negative_angle = -1*angle;
+                //set joint angles
+                
+                this->jointController->SetPositionTarget(left_finger_left_finger_tip, angle);
+                this->jointController->SetPositionTarget(right_finger_right_finger_tip, negative_angle);
+
+
             }
 
         private:
+
             ros::Subscriber sub;
+            ros::Subscriber sub2;
             ros::Publisher pub;
 
             physics::ModelPtr model;
