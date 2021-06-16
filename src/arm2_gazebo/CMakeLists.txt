@@ -30,11 +30,6 @@ add_message_files(
 
 add_service_files(
   FILES
-  Grab.srv
-)
-
-add_service_files(
-  FILES
   FK.srv
   IK.srv
 )
@@ -63,6 +58,10 @@ target_link_libraries(world_plugin ${catkin_LIBRARIES} ${GAZEBO_LIBRARIES})
 add_library(set_angles_subscriber_plugin src/set_angles_subscriber_plugin.cpp)
 target_link_libraries(set_angles_subscriber_plugin ${catkin_LIBRARIES} ${GAZEBO_LIBRARIES})
 
-catkin_install_python(PROGRAMS scripts/grab_release.py
+catkin_install_python(PROGRAMS scripts/ik.py
+  DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
+)
+
+catkin_install_python(PROGRAMS scripts/fk.py
   DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 )
