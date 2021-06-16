@@ -11,7 +11,7 @@
         <plugin name="world_plugin" filename="libworld_plugin.so" />
         <plugin name="set_angles_subscriber_plugin" filename="libset_angles_subscriber_plugin.so" />
         <model name='unit_box'>
-      <pose>0 -3 0.25 0 0 0</pose>
+      <pose>0 -2.9 0.15 0 0 0</pose>
       <link name='link'>
         <inertial>
           <mass>0.1</mass>
@@ -28,7 +28,7 @@
         <collision name='collision'>
           <geometry>
             <box>
-              <size>1 0.5 0.5</size>
+              <size>1 0.13 0.2</size>
             </box>
           </geometry>
           <max_contacts>10</max_contacts>
@@ -48,7 +48,7 @@
         <visual name='visual'>
           <geometry>
             <box>
-              <size>1 0.5 0.5</size>
+              <size>1 0.13 0.2  </size>
             </box>
           </geometry>
           <material>

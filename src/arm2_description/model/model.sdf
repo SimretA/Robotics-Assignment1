@@ -6,7 +6,7 @@
             <pose>0 0 .05 0 0 0</pose>
             <!-- <gravity>0</gravity> -->
             <inertial>
-                <mass>30</mass>
+                <mass>300</mass>
             </inertial>
             <collision name='collision'>
                 <geometry>
@@ -296,7 +296,7 @@
             <child>palm</child>
             <pose>0 0 -0.05 0 0 0</pose>
             <axis>
-                <xyz>1 0 1</xyz>
+                <xyz>0 0 1</xyz>
             </axis>
         </joint>
 

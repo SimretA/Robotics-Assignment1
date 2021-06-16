@@ -29,7 +29,7 @@ namespace gazebo
                 this->jointList = _model->GetJoints();
 
                 // Setup a PID, with a proportion = 0.1, i=0.1, d=0.2.
-                this->pid = common::PID(150,50,50);
+                this->pid = common::PID(100,30,40);
 
                 // Apply the P-controller to the joint.
                 for (auto const &joint : jointList) {
@@ -64,8 +64,9 @@ namespace gazebo
                     // SetJointAngle(joint->GetScopedName(), rad);
                     jointController->SetPositionTarget(joint->GetScopedName(), rad);
                 }
-                // res.result = "angles have been set!";   
-
+                // res.result = "angles have been set!"; 
+                //sleep  
+                sleep(300);
                 //grab or release
                 this->catch_object(msg);     
             }
