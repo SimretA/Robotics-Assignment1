@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 import numpy as np
 from arm2_gazebo.srv import FK,FKResponse
 import rospy
@@ -31,7 +32,7 @@ def handle_inputs(req):  # req.joint_angles. req.joint_length
 
     M = M1.dot(M2).dot(M3).dot(M4).dot(M5)
     print(M)
-    return FKResponse([M[0:3], M[1:3], M[2:3]])
+    return FKResponse([float(M[0][3]), float(M[1][3]), float(M[2][3])])
 
 
 def fk_server():

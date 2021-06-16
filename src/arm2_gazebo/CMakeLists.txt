@@ -65,3 +65,7 @@ catkin_install_python(PROGRAMS scripts/ik.py
 catkin_install_python(PROGRAMS scripts/fk.py
   DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 )
+
+catkin_install_python(PROGRAMS scripts/fk_client.py
+  DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
+)
