@@ -29,11 +29,17 @@ namespace gazebo
                 this->jointList = _model->GetJoints();
 
                 // Setup a PID, with a proportion = 0.1, i=0.1, d=0.2.
-                this->pid = common::PID(100,30,40);
+                this->pid = common::PID(200,65,35);
 
                 // Apply the P-controller to the joint.
+                int count = 0;
                 for (auto const &joint : jointList) {
-                    jointController->SetPositionPID(joint->GetScopedName(), this->pid);
+                    if(count<4)
+                        jointController->SetPositionPID(joint->GetScopedName(), this->pid);
+                    else
+                        jointController->SetPositionPID(joint->GetScopedName(), common::PID(15, 10, 10));
+                    count++;
+
                 }
 
                 int argc = 0;

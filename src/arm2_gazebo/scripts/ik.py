@@ -68,8 +68,10 @@ if __name__ == "__main__":
         print(angles)
         go_talk(angles,sys.argv[-1])
     
-# docs...am really sorry simz...i just need you to fix the pid
-#1. rosrun arm2_gazebo 0 -2.5 0.1 G  //to make it go
-#2. rosrun arm2_gazebo 0 -2.5 0.1 C  //to make it grap(catch) //the ee here are useless
-#3. rosrun arm2_gazebo 0 -2.5 0.1 R  // to make it release  //the ee here are useless
-#4. rosrun arm2_gazebo 0 -2.5 0.1 G  //while it is grabing make it go somewhere neer...fix the pid first
+
+# rosrun arm2_gazebo ik.py 0 -2.5 0.4 G
+# rosrun arm2_gazebo ik.py 0 -2.5 0.4 C
+# rosrun arm2_gazebo ik.py 1.4 -1.7 0.5 G
+# rosrun arm2_gazebo ik.py 1.4 -1.7 0.5 R
+# rosrun arm2_gazebo ik.py 1.4 -1.7 0.1 G
+# rosrun arm2_gazebo ik.py 1.4 -1.7 0.9 G

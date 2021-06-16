@@ -153,6 +153,14 @@
                         <size>0.1 0.2 0.1</size>
                     </box>
                 </geometry>
+                                                <surface>
+        <friction>
+          <ode>
+            <mu>100</mu>
+            <mu2>100</mu2>
+          </ode>
+        </friction>
+      </surface>
             </collision>
             <visual name="visual">
                 <geometry>
@@ -176,6 +184,14 @@
                         <size>0.1 0.1 0.3</size>
                     </box>
                 </geometry>
+                                                <surface>
+        <friction>
+          <ode>
+            <mu>100</mu>
+            <mu2>100</mu2>
+          </ode>
+        </friction>
+      </surface>
             </collision>
             <visual name="visual">
                 <geometry>
@@ -183,6 +199,7 @@
                         <size>0.1 0.1 0.3</size>
                     </box>
                 </geometry>
+
             </visual>
         </link>
 
@@ -199,6 +216,14 @@
                         <size>0.1 0.1 0.3</size>
                     </box>
                 </geometry>
+                <surface>
+        <friction>
+          <ode>
+            <mu>100</mu>
+            <mu2>100</mu2>
+          </ode>
+        </friction>
+      </surface>
             </collision>
             <visual name="visual">
                 <geometry>
@@ -222,6 +247,14 @@
                         <size>0.1 0.1 0.3</size>
                     </box>
                 </geometry>
+                                <surface>
+        <friction>
+          <ode>
+            <mu>100</mu>
+            <mu2>100</mu2>
+          </ode>
+        </friction>
+      </surface>
             </collision>
             <visual name="visual">
                 <geometry>
@@ -244,6 +277,14 @@
                         <size>0.1 0.1 0.3</size>
                     </box>
                 </geometry>
+                <surface>
+        <friction>
+          <ode>
+            <mu>100</mu>
+            <mu2>100</mu2>
+          </ode>
+        </friction>
+      </surface>
             </collision>
             <visual name="visual">
                 <geometry>
@@ -264,6 +305,14 @@
             <pose>0 -0.025 0 0 0 0</pose>
             <axis>
                 <xyz>0 0 1</xyz>
+                <dynamics>
+                    <damping>1.0</damping>
+                    <friction>0.5</friction>
+                </dynamics>
+                <limit>
+                    <effort>100</effort>
+                    <velocity>1.0</velocity>
+                </limit>
             </axis>
         </joint>
         <joint name="arm1_with_arm2" type="revolute">
@@ -272,6 +321,14 @@
             <pose>0 0 -1 0 0 0</pose>
             <axis>
                 <xyz>1 0 0</xyz>
+                <dynamics>
+                    <damping>1.0</damping>
+                    <friction>0.5</friction>
+                </dynamics>
+                <limit>
+                    <effort>100</effort>
+                    <velocity>1.0</velocity>
+                </limit>
             </axis>
         </joint>
         <joint name="arm2_with_arm3" type="revolute">
@@ -280,6 +337,14 @@
             <pose>0 0 -0.5 0 0 0</pose>
             <axis>
                 <xyz>1 0 0</xyz>
+                <dynamics>
+                    <damping>1.0</damping>
+                    <friction>0.5</friction>
+                </dynamics>
+                <limit>
+                    <effort>100</effort>
+                    <velocity>1.0</velocity>
+                </limit>
             </axis>
         </joint>
         <joint name="arm3_with_arm4" type="revolute">
@@ -288,6 +353,14 @@
             <pose>0 0 -0.25 0 0 0</pose>
             <axis>
                 <xyz>1 0 0</xyz>
+                <dynamics>
+                    <damping>1.0</damping>
+                    <friction>0.5</friction>
+                </dynamics>
+                <limit>
+                    <effort>100</effort>
+                    <velocity>1.0</velocity>
+                </limit>
             </axis>
         </joint>
 
@@ -297,6 +370,14 @@
             <pose>0 0 -0.05 0 0 0</pose>
             <axis>
                 <xyz>0 0 1</xyz>
+                <dynamics>
+                    <damping>1.0</damping>
+                    <friction>0.5</friction>
+                </dynamics>
+                <limit>
+                    <effort>100</effort>
+                    <velocity>1.0</velocity>
+                </limit>
             </axis>
         </joint>
 
@@ -306,6 +387,14 @@
             <parent>palm</parent>
             <axis>
                 <xyz>1 0 0</xyz>
+                <dynamics>
+                    <damping>1.0</damping>
+                    <friction>0.5</friction>
+                </dynamics>
+                <limit>
+                    <effort>100</effort>
+                    <velocity>1.0</velocity>
+                </limit>
             </axis>
         </joint>
 
@@ -315,6 +404,14 @@
             <parent>palm</parent>
             <axis>
                 <xyz>1 0 0</xyz>
+                <dynamics>
+                    <damping>1.0</damping>
+                    <friction>0.5</friction>
+                </dynamics>
+                <limit>
+                    <effort>100</effort>
+                    <velocity>1.0</velocity>
+                </limit>
             </axis>
         </joint>
         <joint name="left_finger_left_finger_tip" type="revolute">
@@ -323,6 +420,14 @@
             <parent>left_finger</parent>
             <axis>
                 <xyz>1 0 0</xyz>
+                <dynamics>
+                    <damping>1.0</damping>
+                    <friction>0.5</friction>
+                </dynamics>
+                <limit>
+                    <effort>100</effort>
+                    <velocity>1.0</velocity>
+                </limit>
             </axis>
         </joint>
         <joint name="right_finger_right_finger_tip" type="revolute">
@@ -331,6 +436,14 @@
             <parent>right_finger</parent>
             <axis>
                 <xyz>1 0 0</xyz>
+                <dynamics>
+                    <damping>1.0</damping>
+                    <friction>0.5</friction>
+                </dynamics>
+                <limit>
+                    <effort>100</effort>
+                    <velocity>1.0</velocity>
+                </limit>
             </axis>
         </joint>
 
