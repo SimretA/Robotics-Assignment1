@@ -50,25 +50,32 @@ namespace gazebo
 
             void set_angles_here(const arm2_gazebo::setangles::ConstPtr& msg)
             {
-                printf("message received");
-                printf("angle1: ");
-                cout << msg->angle1 << endl;
-                double angles[4];
-                angles[0] = msg->angle1;
-                angles[1] = msg->angle2;
-                angles[2] = msg->angle3;
-                angles[3] = msg->angle4;
-                int index = 0;
-                for (auto joint : jointList) {
-                    float rad = M_PI * angles[index++] / 180;
-                    // SetJointAngle(joint->GetScopedName(), rad);
-                    jointController->SetPositionTarget(joint->GetScopedName(), rad);
+                if(msg->state == "G"){
+                    printf("message received");
+                    printf("angle1: ");
+                    cout << msg->angle1 << endl;
+                    double angles[4];
+                    angles[0] = msg->angle1;
+                    angles[1] = msg->angle2;
+                    angles[2] = msg->angle3;
+                    angles[3] = msg->angle4;
+                    int index = 0;
+                    for (auto joint : jointList) {
+                        float rad = M_PI * angles[index++] / 180;
+                        // SetJointAngle(joint->GetScopedName(), rad);
+                        jointController->SetPositionTarget(joint->GetScopedName(), rad);
+                    }
+                }else if(msg->state == "C"){
+                    this->catch_object(msg); 
+                }else if(msg->state == "R"){
+                    this->catch_object(msg);
                 }
-                // res.result = "angles have been set!"; 
-                //sleep  
-                sleep(300);
-                //grab or release
-                this->catch_object(msg);     
+                
+                // // res.result = "angles have been set!"; 
+                // //sleep  
+                // sleep(300);
+                // //grab or release
+                // this->catch_object(msg);     
             }
             void catch_object(const arm2_gazebo::setangles::ConstPtr& msg){
                 //get joints

@@ -2,10 +2,8 @@
 from arm2_gazebo.msg import setangles
 import tinyik as myIk
 import sys
+from arm2_gazebo.srv import IK,IKResponse
 import rospy
-
-def callback(data):
-    print("HERE: " + data)
 
 def handle_inputs(ee): #req.actuator_pose. res.new_angles
     arm = myIk.Actuator([
@@ -18,40 +16,60 @@ def handle_inputs(ee): #req.actuator_pose. res.new_angles
     arm.ee = ee
     return arm.angles
 
-def go_talk(angles):
+def go_talk(angles,state):
     pub = rospy.Publisher('angle_listner_topic', setangles, queue_size=10)
     rospy.init_node('end_efector_talker', anonymous=True)
     rate = rospy.Rate(30) # 10hz
-    fingerer = 10
     while not rospy.is_shutdown():
         e = setangles()
-        e.angle1 = to_deg(angles[0])
-        e.angle2 = to_deg(angles[1])
-        e.angle3 = to_deg(angles[2])
-        e.angle4 = to_deg(angles[3])
-        e.finger_finger_tip = fingerer
-        pub.publish(e)
-        # rate.sleep()
-        print("---")
-        # rospy.spin()
-        fingerer = 90
-        e.finger_finger_tip = fingerer
-        pub.publish(e)
-        # source ./devel
-        # rosrun arm2_gazebo ik.py 1 1 1
-
-    
+        e.state = state
+        if state == 'G':  #g for go
+            e.angle1 = to_deg(angles[0])
+            e.angle2 = to_deg(angles[1])
+            e.angle3 = to_deg(angles[2])
+            e.angle4 = to_deg(angles[3])
+        elif state == 'C':
+            e.finger_finger_tip = 50 #c for catch
+        elif state == 'R':
+            e.finger_finger_tip = 10 #r for release
+        
+        # close the connection
+        connections = pub.get_num_connections()
+        if connections > 0:
+            pub.publish(e)
+            break
+        rate.sleep()
 
 def to_deg(angle):
     return (angle*180)/3.14
 
+def handle_end_efactors(req):
+    EE = req.actuator_pose
+    print("<<")
+    print(EE)
+    print(">>")
+    response = IKResponse()
+    response.new_angles = handle_inputs(EE)
+    print(response.new_angles)
+    return response
+
 if __name__ == "__main__":
-    given_ee = []
-    for e in sys.argv[1:]:
-        given_ee.append(float(e))
-    print(given_ee)
-    angles = handle_inputs(given_ee)
-    print(angles)
-    go_talk(angles)
+    print("Service is running...")
+    # Ik_server()
+    print(sys.argv)
+    if len(sys.argv) != 5:
+        print("input wrong..more than need to be just 5 inputs")
+    else:
+        given_ee = []
+        for e in sys.argv[1:-1]:
+            given_ee.append(float(e))
+        print(given_ee)
+        angles = handle_inputs(given_ee)
+        print(angles)
+        go_talk(angles,sys.argv[-1])
     
-    
+# docs...am really sorry simz...i just need you to fix the pid
+#1. rosrun arm2_gazebo 0 -2.5 0.1 G  //to make it go
+#2. rosrun arm2_gazebo 0 -2.5 0.1 C  //to make it grap(catch) //the ee here are useless
+#3. rosrun arm2_gazebo 0 -2.5 0.1 R  // to make it release  //the ee here are useless
+#4. rosrun arm2_gazebo 0 -2.5 0.1 G  //while it is grabing make it go somewhere neer...fix the pid first
