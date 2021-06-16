@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 import numpy as np
 from arm2_gazebo.srv import IK,IKResponse
 import tinyik as myIk
