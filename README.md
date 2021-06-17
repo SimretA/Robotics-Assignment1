@@ -13,6 +13,10 @@ Zekaryas Tadele ATR/8749/09 <br>
 <h4>
 <a href="https://github.com/SimretA/Robotics-Assignment1/tree/main/src/arm2_gazebo">Assignment 2</a> <br>
 
+
+
+https://user-images.githubusercontent.com/34395404/122310604-5a3cd400-cf19-11eb-9ebe-30df76f95c29.mp4
+
   
   
   
