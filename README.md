@@ -16,5 +16,3 @@ Zekaryas Tadele ATR/8749/09 <br>
   
   
   
-  
-  https://user-images.githubusercontent.com/34395404/122309819-b30b6d00-cf17-11eb-9ea7-9f71e2e0874e.mp4
